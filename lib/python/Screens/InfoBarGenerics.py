@@ -1496,6 +1496,7 @@ class InfoBarMenu:
 				"showNetworkSetup": (self.showNetworkMounts, _("Show network mounts ")),
 				"showSystemSetup": (self.showSystemMenu, _("Show network mounts ")),
 				"showRFmod": (self.showRFSetup, _("Show RFmod setup")),
+				"showHDMIRecord": (self.showHDMiRecordSetup, _("Show HDMIRecord setup...")),
 				"toggleAspectRatio": (self.toggleAspectRatio, _("Toggle aspect ratio")),
 			}, description=_("Menu"))
 		self.session.infobar = None
@@ -1546,6 +1547,15 @@ class InfoBarMenu:
 	def showRFSetup(self):
 		self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
 
+<<<<<<< HEAD
+=======
+	def showHDMiRecordSetup(self):
+		if SystemInfo["HDMIin"]:
+			self.session.openWithCallback(self.mainMenuClosed, Setup, 'HDMIRecord')
+
+	def mainMenuClosed(self, *val):
+		self.session.infobar = None
+>>>>>>> 9ff2375ce7 (add hdmirecord setup)
 
 class InfoBarSimpleEventView:
 	def __init__(self):
