@@ -1,9 +1,9 @@
-from config import config, ConfigSelection, ConfigSubsection
-from boxbranding import getBoxType, getMachineBuild
+from Components.config import config, ConfigSelection, ConfigSubsection
+from Components.SystemInfo import SystemInfo
 
 
 def InitHdmiRecord():
-    full_hd = getMachineBuild() in ('et10000','dm900', 'dm920', 'et13000', 'sf5008', 'vuuno4kse') or getBoxType() in ('spycat4k','spycat4kcombo','gbquad4k')
+    full_hd = SystemInfo["model"] in ('et10000','dm900', 'dm920', 'et13000', 'sf5008', 'vuuno4kse') or SystemInfo["boxtype"] in ('spycat4k','spycat4kcombo','gbquad4k')
 
     config.hdmirecord = ConfigSubsection()
 
