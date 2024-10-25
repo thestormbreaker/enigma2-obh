@@ -48,6 +48,7 @@
 
 ----------
 5 - Disable apparmor profile
+
    Currently due to this Ubuntu/bitbake issue: https://bugs.launchpad.net/ubuntu/+source/apparmor/+bug/2056555
    This command must be entered after every restart of the build PC.
    
