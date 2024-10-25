@@ -3,9 +3,9 @@ from Components.SystemInfo import SystemInfo
 
 
 def InitHdmiRecord():
-    full_hd = SystemInfo["model"] in ('et10000','dm900', 'dm920', 'et13000', 'sf5008', 'vuuno4kse') or SystemInfo["boxtype"] in ('spycat4k','spycat4kcombo','gbquad4k')
+	full_hd = SystemInfo.get("hdmifhdin")
 
-    config.hdmirecord = ConfigSubsection()
+	config.hdmirecord = ConfigSubsection()
 
 	choices = [
 		(512000, "0.5 Mb/s"),
