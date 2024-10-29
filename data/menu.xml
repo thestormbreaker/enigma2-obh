@@ -164,8 +164,8 @@ self.session.open(SABnzbdSetupScreen)
 		<menu key="rec" level="1" text="Recordings, Playback &amp; Timeshift" weight="11">
 			<item key="recording_setup" level="0" text="Recording" weight="10"><screen module="Recordings" screen="RecordingSettings" /></item>
 			<item key="playback_setup" level="0" text="Playback" weight="12"><setup id="playback" /></item>
-			<item key="timshift_setup" level="0" text="Timeshift" weight="15"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
-			<item key="hdmirecord_setup" level="0" text="HDMI-IN Recording settings" weight="15" requires="HDMIin"><setup id="HDMIRecord"/></item>
+			<item key="timeshift_setup" level="0" text="Timeshift" weight="15"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
+			<item key="hdmirecord_setup" level="0" text="HDMI-IN Recording settings" weight="15" requires="HasHDMIin"><setup id="HDMIRecord"/></item>
 		</menu>
 
 		<!-- Menu / Setup / Time Settings -->

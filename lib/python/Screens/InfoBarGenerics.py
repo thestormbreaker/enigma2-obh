@@ -1547,15 +1547,13 @@ class InfoBarMenu:
 	def showRFSetup(self):
 		self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
 
-<<<<<<< HEAD
-=======
 	def showHDMiRecordSetup(self):
 		if SystemInfo["HDMIin"]:
 			self.session.openWithCallback(self.mainMenuClosed, Setup, 'HDMIRecord')
 
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
->>>>>>> 9ff2375ce7 (add hdmirecord setup)
+
 
 class InfoBarSimpleEventView:
 	def __init__(self):
@@ -4519,7 +4517,7 @@ class InfoBarHdmi:
 		if SystemInfo['HasHDMIin']:
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
-			if not self.hdmi_enabled_pip:
+			if SystemInfo["HDMIinPiP"] and not self.hdmi_enabled_pip:
 				self.addExtension((self.getHDMIInPiPScreen, self.HDMIInPiP, lambda: True), "green")
 
 		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",
@@ -4534,10 +4532,12 @@ class InfoBarHdmi:
 			self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
 			self.session.pip.show()
 			self.session.pipshown = True
-		else:
+			self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+		elif SystemInfo["HDMIinPiP"]:
 			curref = self.session.pip.getCurrentService()
 			if curref and curref.type != 8192:
 				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 			else:
 				self.session.pipshown = False
 				del self.session.pip
@@ -4551,16 +4551,10 @@ class InfoBarHdmi:
 			self.session.nav.playService(slist.servicelist.getCurrent())
 
 	def getHDMIInFullScreen(self):
-		if not self.hdmi_enabled_full:
-			return _("Turn on HDMI-IN full screen mode")
-		else:
-			return _("Turn off HDMI-IN full screen mode")
+		return _("Turn on HDMI-IN Full screen mode") if not self.hdmi_enabled_full else _("Turn off HDMI-IN Full screen mode")
 
 	def getHDMIInPiPScreen(self):
-		if not self.hdmi_enabled_pip:
-			return _("Turn on HDMI-IN PiP mode")
-		else:
-			return _("Turn off HDMI-IN PiP mode")
+		return _("Turn on HDMI-IN PiP mode") if not self.hdmi_enabled_pip else _("Turn off HDMI-IN PiP mode")
 
 	def HDMIInPiP(self):
 		if not hasattr(self.session, 'pip') and not self.session.pipshown:
