@@ -311,9 +311,8 @@ std::string eAVSwitch::getVideoMode(const std::string &defaultVal, int flags) co
 void eAVSwitch::startStopHDMIIn(bool on, bool audio, int flags)
 {
 
-	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: audio:%d on:%d", __MODULE__, "startStopHDMIIn", audio, on);
-
+	eDebug("[%s] %s: audio:%d on:%d", __MODULE__, "startStopHDMIIn", audio, on);
+	eDebug("[eAVSwitch][startStopHDMIIn] m_b_has_proc_hdmi_rx_monitor %d", m_b_has_proc_hdmi_rx_monitor);
 	std::string state = on ? "on" : "off";
 
 	if (on)
@@ -357,6 +356,7 @@ void eAVSwitch::startStopHDMIIn(bool on, bool audio, int flags)
 // disable HDMIIn / used in StartEnigma.py
 void eAVSwitch::disableHDMIIn(int flags) const
 {
+	eDebug("[eAVSwitch][disableHDMIIn] m_b_has_proc_hdmi_rx_monitor %d", m_b_has_proc_hdmi_rx_monitor);
 	if (!m_b_has_proc_hdmi_rx_monitor)
 		return;
 
