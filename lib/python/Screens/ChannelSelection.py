@@ -85,7 +85,7 @@ class InsertService(Setup):
 			self.servicerefstring = '8192:0:1:0:0:0:0:0:0:0::%s' % _("HDMI-IN")
 		else:
 			self.servicerefstring = '%s:0:1:0:0:0:0:0:0:0:%s:%s' % (self.streamtype.value, self.streamurl.value.replace(':', '%3a'), self.servicename.value)
-		self.title  = '%s [%s]' % (_("Add a Service"), self.servicerefstring)
+		self.title = '%s [%s]' % (_("Add a Service"), self.servicerefstring)
 		SetupList = [(_("Service Type"), self.servicetype, _("Select a service from the service list, or left/right to enter IPTV stream details%s") % (" " + _("or HDMI input") if SystemInfo.get("hdmifhdin") or SystemInfo.get("hdmihdin") else ""))]
 		if self.servicetype.value != "Select Service":
 			if self.servicetype.value != "HDMI-in":
@@ -120,6 +120,7 @@ class InsertService(Setup):
 
 	def selectService(self):
 		self.session.openWithCallback(self.channelSelectionCallback, SimpleChannelSelection, _("Select channel"))
+
 
 def getStreamRelayRef(sref):
 	try:
