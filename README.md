@@ -44,19 +44,20 @@
 	sudo sysctl -n -w fs.inotify.max_user_watches=524288
 
 ----------
-5. Disable apparmor profile
-   Currently due to this Ubuntu/bitbake issue..https://bugs.launchpad.net/ubuntu/+source/apparmor/+bug/2056555
-   This command must be entered after every restart of the build PC....
+5 - Disable apparmor profile
 
-   sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+    Currently due to this Ubuntu/bitbake issue: https://bugs.launchpad.net/ubuntu/+source/apparmor/+bug/2056555
+    This command must be entered after every restart of the build PC.
+
+    sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
 
 ----------
 6 - Add user openbhbuilder
 
 ----------
-7. Add your git user and email
+7 - Add your git user and email
 
-     git config --global user.email "you@example.com"
+    git config --global user.email "you@example.com"
 
     git config --global user.name "Your Name"
 
@@ -102,8 +103,9 @@
 16 - Update site.conf
 
     - BB_NUMBER_THREADS, PARALLEL_MAKE set to number of threads supported by the CPU
-    - add/modify DL_DIR = " location for build sources " to point to a location where you can save derived build sources,
-    this will reduce build time in fetching these sources again.
+    - add/modify DL_DIR = " location for build sources " to point to a location where you can save
+      derived build sources, this will reduce build time in fetching these sources again.
+    - Avoid wasting disk space creating spdx packages: INHERIT:remove = "create-spdx"
 
 ----------
 17 - Building image with feeds  e.g.:-
