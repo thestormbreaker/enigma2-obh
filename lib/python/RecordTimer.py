@@ -1031,12 +1031,12 @@ class RecordTimer(Timer):
 		# when activating a timer for HDMI In,
 		# and SystemApp has player enabled, then skip recording.
 		# Or always skip if in ("5001", "5002") as these cannot be recorded.
-		elif "8192" in w.service_ref.toString() and not SystemInfo["CanHDMIinRecord"]:  
+		elif "8192" in w.service_ref.toString() and not SystemInfo["CanHDMIinRecord"]:
 			print("[RecordTimer][doActivate] found HDMI In and cannot record on Hdmi In - disable this timer recording")
 			w.state = RecordTimerEntry.StateEnded
 			from Tools.Notifications import AddPopup
 			from Screens.MessageBox import MessageBox
-			AddPopup(_("Recording HDMI In not possible on this receiver, timer ended!\nPlease recheck it!"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerRecordingFailed")		
+			AddPopup(_("Recording HDMI In not possible on this receiver, timer ended!\nPlease recheck it!"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerRecordingFailed")
 		# when activating a timer which has already passed,
 		# simply abort the timer. don't run trough all the stages.
 		elif w.shouldSkip():
