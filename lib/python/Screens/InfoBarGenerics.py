@@ -1551,8 +1551,6 @@ class InfoBarMenu:
 		if SystemInfo["HDMIin"]:
 			self.session.openWithCallback(self.mainMenuClosed, Setup, 'HDMIRecord')
 
-	def mainMenuClosed(self, *val):
-		self.session.infobar = None
 
 
 class InfoBarSimpleEventView:
@@ -4517,9 +4515,9 @@ class InfoBarHdmi:
 		if SystemInfo['HasHDMIin']:
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
-#			HDMIinPiP causes issues in all tested boxes
-#			if SystemInfo["HDMIinPiP"] and not self.hdmi_enabled_pip:
-#				self.addExtension((self.getHDMIInPiPScreen, self.HDMIInPiP, lambda: True), "green")
+# 			HDMIinPiP causes issues in all tested boxes
+# 			if SystemInfo["HDMIinPiP"] and not self.hdmi_enabled_pip:
+# 				self.addExtension((self.getHDMIInPiPScreen, self.HDMIInPiP, lambda: True), "green")
 
 		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",
 			{

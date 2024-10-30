@@ -93,9 +93,9 @@ class Wizard(Screen):
 				self.wizard[self.lastStep]["config"]["type"] = type
 				if type in ("ConfigList", "standalone"):
 					try:
-						exec("from Screens.%s import *" % attributes.get("module", "None"), globals())
+						exec("from Screens.%s import *" % attrs.get("module", "None"), globals())
 					except ImportError:
-						exec("from %s import *" % attributes.get("module", "None"), globals())
+						exec("from %s import *" % attrs.get("module", "None"), globals())
 					self.wizard[self.lastStep]["config"]["screen"] = eval(str(attrs.get('screen')))
 					if 'args' in attrs:
 						# print("[wizard]has args")

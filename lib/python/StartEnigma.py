@@ -669,7 +669,7 @@ InitAVSwitch()
 InitiVideomodeHotplug()
 
 profile("InitHDMIRecord")
-from Components.HdmiRecord import InitHdmiRecord
+from Components.HdmiRecord import InitHdmiRecord  # noqa: E402
 InitHdmiRecord()
 
 profile("EpgConfig")
