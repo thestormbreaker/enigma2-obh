@@ -4563,7 +4563,7 @@ class InfoBarHdmi:
 			self.session.nav.playService(slist.servicelist.getCurrent())
 
 	def getHDMIInFullScreen(self):
-		return _("Turn on HDMI-IN Full screen mode") if not self.hdmi_enabled_full else _("Turn off HDMI-IN Full screen mode")
+		return _("Switch to HDMI-IN") if not self.hdmi_enabled_full else _("Switch off HDMI-IN input")
 
 	def getHDMIInPiPScreen(self):
 		return _("Turn on HDMI-IN PiP mode") if not self.hdmi_enabled_pip else _("Turn off HDMI-IN PiP mode")
