@@ -159,8 +159,8 @@ void eDBoxLCD::setFlipped(bool onoff)
 
 void eDBoxLCD::setDump(bool onoff)
 {
- 	dump = onoff;
- 	dumpLCD2PNG();
+	dump = onoff;
+	dumpLCD2PNG();
 }
 
 int eDBoxLCD::setLCDContrast(int contrast)
