@@ -149,31 +149,6 @@ class ResumePoints():
 resumePointsInstance = ResumePoints()
 
 
-# Start: temporary legacy resume point code
-def setResumePoint(session):  # legacy code
-	resumePointsInstance.setResumePoint(session)
-
-
-def delResumePoint(ref):  # legacy code
-	resumePointsInstance.delResumePoint(ref)
-
-
-def getResumePoint(session):  # legacy code
-	return resumePointsInstance.getResumePoint(session)
-
-
-def saveResumePoints():  # legacy code
-	resumePointsInstance.saveResumePoints()
-
-
-def loadResumePoints():  # legacy code
-	resumePointsInstance.loadResumePoints()
-
-resumePointCache = resumePointsInstance.resumePointCache  # legacy code
-resumePointCacheLast = 0  # legacy code
-# End: temporary legacy resume point code
-
-
 class whitelist:
 	vbi = []
 
