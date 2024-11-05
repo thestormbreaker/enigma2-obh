@@ -665,10 +665,6 @@ from Components.AVSwitch import InitAVSwitch, InitiVideomodeHotplug  # noqa: E40
 InitAVSwitch()
 InitiVideomodeHotplug()
 
-profile("InitHDMIRecord")
-from Components.HdmiRecord import InitHdmiRecord  # noqa: E402
-InitHdmiRecord()
-
 profile("EpgConfig")
 from Components.EpgConfig import InitEPGConfig  # noqa: E402
 InitEPGConfig()
