@@ -2426,7 +2426,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		# some things didn't delete. Ask whether we should try doing a permanent delete instead
 		if failedList:
 			failedCount = len(failedList)
-			msg = _("Couldn't delete '%s'.") % failedList[0] if failedCount == 1 else _("Couldn't delete %d items.") % failedCount
+			msg = _("Couldn't delete '%s'.") % str(failedList[0]) if failedCount == 1 else _("Couldn't delete %d items.") % failedCount
 			mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
 
