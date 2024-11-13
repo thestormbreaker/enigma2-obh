@@ -94,12 +94,10 @@ class PiconLocator:
 			pngname = self.findPicon('_'.join(fields))
 		if not pngname:  # picon by channel name
 			utf8_name = sanitizeFilename(eServiceReference(serviceRef).getServiceName()).lower()
-			name = sub("[^a-z0-9]", "", utf8_name.replace("&", "and").replace("+", "plus").replace("*", "star"))
-			if name:
-				pngname = self.findPicon(name) or self.findPicon(sub("(fhd|uhd|hd|sd|4k)$", "", name).strip()) or self.findPicon(utf8_name)
-				if not pngname and len(name) > 6:
-					series = sub(r"s[0-9]*e[0-9]*$", "", name)
-					pngname = self.findPicon(series)
+			pngname = self.findPicon(utf8_name) or self.findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", utf8_name).strip())
+			if not pngname:  # legacy ascii service name picons
+				name = sub("[^a-z0-9]", "", utf8_name.replace("&", "and").replace("+", "plus").replace("*", "star"))
+				pngname = self.findPicon(name) or self.findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", name).strip())
 		return pngname
 
 
