@@ -3,6 +3,7 @@ from re import sub
 
 from enigma import ePixmap, eServiceReference
 
+from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
 from Tools.Alternatives import GetWithAlternative
@@ -49,14 +50,21 @@ class PiconLocator:
 			self.__onMountpointRemoved(part.mountpoint)
 
 	def findPicon(self, service):
+		ext_priority = {
+			"png_only": (".png",),
+			"svg_only": (".svg",),
+			"png_svg": (".png", ".svg"),
+			"svg_png": (".svg", ".png")}
+			
+		exts = ext_priority[config.usage.picon_lookup_priority.value]
 		if self.activePiconPath is not None:
-			for ext in (".png", ".svg"):
+			for ext in exts:
 				pngname = self.activePiconPath + service + ext
 				if pathExists(pngname):
 					return pngname
 		else:
 			for path in self.searchPaths:
-				for ext in (".png", ".svg"):
+				for ext in exts:
 					pngname = path + service + ext
 					if pathExists(pngname):
 						self.activePiconPath = path
