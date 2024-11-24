@@ -87,6 +87,9 @@ class SystemInformation(dict):
 	def __prohibited(self, *args, **kws):
 		print("[SystemInfo] operation not permitted")
 
+	def __contains__(self, item):
+		return item in BoxInfo.boxInfo
+
 	clear = __prohibited
 	update = __prohibited
 	setdefault = __prohibited
