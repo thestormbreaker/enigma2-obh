@@ -196,7 +196,7 @@ class AudioSelection(ConfigListScreen, Screen):
 					choice_list = self.readChoices("/proc/stb/audio/dtshd_choices", choice_list)
 				self.settings.dtshd = ConfigSelection(choices=choice_list, default=config.av.dtshd.value)
 				self.settings.dtshd.addNotifier(self.changeDTSHD, initial_call=False)
-				conflist.append(getConfigListEntry(_("DTS-HD HR/DTS-HD MA downmix"), self.settings.dtshd, None))
+				conflist.append(getConfigListEntry(_("DTS-HD MA/HR downmix"), self.settings.dtshd, None))
 
 			if SystemInfo["CanDownmixAACPlus"]:
 				choice_list = [
