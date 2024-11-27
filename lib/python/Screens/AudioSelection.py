@@ -190,29 +190,6 @@ class AudioSelection(ConfigListScreen, Screen):
 				self.settings.downmix_aac.addNotifier(self.changeAACDownmix, initial_call=False)
 				conflist.append(getConfigListEntry(_("AAC downmix"), self.settings.downmix_aac, None))
 
-			if SystemInfo["CanAC3Transcode"]:
-				choice_list = [
-					("use_hdmi_caps", _("controlled by HDMI")),
-					("force_ac3", _("convert to AC3"))
-				]
-				if SystemInfo["CanProc"]:
-					choice_list = self.readChoices("/proc/stb/audio/ac3plus_choices", choice_list)
-				self.settings.transcodeac3plus = ConfigSelection(choices=choice_list, default=config.av.transcodeac3plus.value)
-				self.settings.transcodeac3plus.addNotifier(self.setAC3plusTranscode, initial_call=False)
-				conflist.append(getConfigListEntry(_("AC3 transcoding"), self.settings.transcodeac3plus, None))
-
-			if SystemInfo["CanAACTranscode"]:
-				choice_list = [
-					("off", _("off")),
-					("ac3", _("AC3")),
-					("dts", _("DTS"))
-				]
-				if SystemInfo["CanProc"]:
-					choice_list = self.readChoices("/proc/stb/audio/aac_transcode_choices", choice_list)
-				self.settings.transcodeaac = ConfigSelection(choices=choice_list, default=config.av.transcodeaac.value)
-				self.settings.transcodeaac.addNotifier(self.setAACTranscode, initial_call=False)
-				conflist.append(getConfigListEntry(_("AAC transcoding"), self.settings.transcodeaac, None))
-
 			if SystemInfo["CanDTSHD"]:
 				choice_list = [
 					("downmix", _("Downmix")),
@@ -239,6 +216,29 @@ class AudioSelection(ConfigListScreen, Screen):
 				self.settings.wmapro = ConfigSelection(choices=choice_list, default=config.av.wmapro.value)
 				self.settings.wmapro.addNotifier(self.changeWMAPro, initial_call=False)
 				conflist.append(getConfigListEntry(_("WMA Pro downmix"), self.settings.wmapro, None))
+
+			if SystemInfo["CanAC3Transcode"]:
+				choice_list = [
+					("use_hdmi_caps", _("controlled by HDMI")),
+					("force_ac3", _("convert to AC3"))
+				]
+				if SystemInfo["CanProc"]:
+					choice_list = self.readChoices("/proc/stb/audio/ac3plus_choices", choice_list)
+				self.settings.transcodeac3plus = ConfigSelection(choices=choice_list, default=config.av.transcodeac3plus.value)
+				self.settings.transcodeac3plus.addNotifier(self.setAC3plusTranscode, initial_call=False)
+				conflist.append(getConfigListEntry(_("AC3 transcoding"), self.settings.transcodeac3plus, None))
+
+			if SystemInfo["CanAACTranscode"]:
+				choice_list = [
+					("off", _("off")),
+					("ac3", _("AC3")),
+					("dts", _("DTS"))
+				]
+				if SystemInfo["CanProc"]:
+					choice_list = self.readChoices("/proc/stb/audio/aac_transcode_choices", choice_list)
+				self.settings.transcodeaac = ConfigSelection(choices=choice_list, default=config.av.transcodeaac.value)
+				self.settings.transcodeaac.addNotifier(self.setAACTranscode, initial_call=False)
+				conflist.append(getConfigListEntry(_("AAC transcoding"), self.settings.transcodeaac, None))
 
 			if SystemInfo["CanPcmMultichannel"]:
 				self.settings.pcm_multichannel = ConfigOnOff(default=config.av.pcm_multichannel.value)
