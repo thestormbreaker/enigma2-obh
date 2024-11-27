@@ -673,20 +673,6 @@ def InitAVSwitch():
 		config.av.downmix_ac3 = ConfigSelection(choices=choices, default=default)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
-	if SystemInfo["CanAC3Transcode"]:
-		def setAC3plusTranscode(configElement):
-			open("/proc/stb/audio/ac3plus", "w").write(configElement.value)
-		choices = [
-			("use_hdmi_caps", _("controlled by HDMI")),
-			("force_ac3", _("convert to AC3"))
-		]
-		default = "force_ac3"
-		if SystemInfo["CanProc"]:
-			f = "/proc/stb/audio/ac3plus_choices"
-			(choices, default) = readChoices(f, choices, default)
-		config.av.transcodeac3plus = ConfigSelection(choices=choices, default=default)
-		config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
-
 	if SystemInfo["CanDownmixDTS"]:
 		def setDTSDownmix(configElement):
 			open("/proc/stb/audio/dts", "w").write(configElement.value)
@@ -700,6 +686,35 @@ def InitAVSwitch():
 			(choices, default) = readChoices(f, choices, default)
 		config.av.downmix_dts = ConfigSelection(choices=choices, default=default)
 		config.av.downmix_dts.addNotifier(setDTSDownmix)
+
+	if SystemInfo["CanDownmixAAC"]:
+		def setAACDownmix(configElement):
+			open("/proc/stb/audio/aac", "w").write(configElement.value)
+		choices = [
+			("downmix", _("Downmix")),
+			("passthrough", _("Passthrough"))
+		]
+		default = "downmix"
+		if SystemInfo["CanProc"]:
+			f = "/proc/stb/audio/aac_choices"
+			(choices, default) = readChoices(f, choices, default)
+
+		config.av.downmix_aac = ConfigSelection(choices=choices, default=default)
+		config.av.downmix_aac.addNotifier(setAACDownmix)
+
+	if SystemInfo["CanDownmixAC3Plus"]:
+		def setAC3DownmixPlus(configElement):
+			open("/proc/stb/audio/ac3plus", "w").write(configElement.value)
+		choices = [
+			("downmix", _("Downmix")),
+			("passthrough", _("Passthrough"))
+		]
+		default = "downmix"
+		if SystemInfo["CanProc"]:
+			f = "/proc/stb/audio/ac3plus_choices"
+			(choices, default) = readChoices(f, choices, default)
+		config.av.downmix_ac3plus = ConfigSelection(choices=choices, default=default)
+		config.av.downmix_ac3plus.addNotifier(setAC3DownmixPlus)
 
 	if SystemInfo["CanDTSHD"]:
 		def setDTSHD(configElement):
@@ -718,21 +733,6 @@ def InitAVSwitch():
 
 		config.av.dtshd = ConfigSelection(choices=choices, default=default)
 		config.av.dtshd.addNotifier(setDTSHD)
-
-	if SystemInfo["CanDownmixAAC"]:
-		def setAACDownmix(configElement):
-			open("/proc/stb/audio/aac", "w").write(configElement.value)
-		choices = [
-			("downmix", _("Downmix")),
-			("passthrough", _("Passthrough"))
-		]
-		default = "downmix"
-		if SystemInfo["CanProc"]:
-			f = "/proc/stb/audio/aac_choices"
-			(choices, default) = readChoices(f, choices, default)
-
-		config.av.downmix_aac = ConfigSelection(choices=choices, default=default)
-		config.av.downmix_aac.addNotifier(setAACDownmix)
 
 	if SystemInfo["CanDownmixAACPlus"]:
 		def setAACDownmixPlus(configElement):
@@ -755,6 +755,23 @@ def InitAVSwitch():
 		config.av.downmix_aacplus = ConfigSelection(choices=choices, default=default)
 		config.av.downmix_aacplus.addNotifier(setAACDownmixPlus)
 
+	if SystemInfo["CanWMAPRO"]:
+		def setWMAPRO(configElement):
+			open("/proc/stb/audio/wmapro", "w").write(configElement.value)
+		choices = [
+			("downmix", _("Downmix")),
+			("passthrough", _("Passthrough")),
+			("multichannel", _("convert to multi-channel PCM")),
+			("hdmi_best", _("use best / controlled by HDMI"))
+		]
+		default = "downmix"
+		if SystemInfo["CanProc"]:
+			f = "/proc/stb/audio/wmapro_choices"
+			(choices, default) = readChoices(f, choices, default)
+
+		config.av.wmapro = ConfigSelection(choices=choices, default=default)
+		config.av.wmapro.addNotifier(setWMAPRO)
+
 	if SystemInfo["CanAACTranscode"]:
 		def setAACTranscode(configElement):
 			open("/proc/stb/audio/aac_transcode", "w").write(configElement.value)
@@ -772,23 +789,6 @@ def InitAVSwitch():
 		config.av.transcodeaac.addNotifier(setAACTranscode)
 	else:
 		config.av.transcodeaac = ConfigNothing()
-
-	if SystemInfo["CanWMAPRO"]:
-		def setWMAPRO(configElement):
-			open("/proc/stb/audio/wmapro", "w").write(configElement.value)
-		choices = [
-			("downmix", _("Downmix")),
-			("passthrough", _("Passthrough")),
-			("multichannel", _("convert to multi-channel PCM")),
-			("hdmi_best", _("use best / controlled by HDMI"))
-		]
-		default = "downmix"
-		if SystemInfo["CanProc"]:
-			f = "/proc/stb/audio/wmapro_choices"
-			(choices, default) = readChoices(f, choices, default)
-
-		config.av.wmapro = ConfigSelection(choices=choices, default=default)
-		config.av.wmapro.addNotifier(setWMAPRO)
 
 	if SystemInfo["CanBTAudio"]:
 		def setBTAudio(configElement):
