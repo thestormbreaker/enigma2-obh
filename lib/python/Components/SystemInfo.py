@@ -2,9 +2,9 @@ from ast import literal_eval
 from os import listdir
 from hashlib import md5
 from os.path import isfile, join as pathjoin
+from re import split
 from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager
 
-from Components.About import getChipSetString
 from Components.RcModel import rc_model
 from Tools.Directories import fileCheck, fileExists, fileHas, pathExists, resolveFilename, SCOPE_LIBDIR, SCOPE_SKIN, fileReadLines
 from Tools.HardwareInfo import HardwareInfo
@@ -78,11 +78,14 @@ ARCHITECTURE = BoxInfo.getItem("architecture")
 BRAND = BoxInfo.getItem("brand")
 MODEL = BoxInfo.getItem("model")
 SOC_FAMILY = BoxInfo.getItem("socfamily")
+SOC_BRAND = split('(\d.*)', SOC_FAMILY)[0]
+CHIPSET = split('(\d.*)', SOC_FAMILY)[1]
 DISPLAYTYPE = BoxInfo.getItem("displaytype")
 MTDROOTFS = BoxInfo.getItem("mtdrootfs")
 DISPLAYMODEL = BoxInfo.getItem("displaymodel")
 DISPLAYBRAND = BoxInfo.getItem("displaybrand")
 MACHINEBUILD = BoxInfo.getItem("machinebuild")
+OEA = split('(\d.*)', BoxInfo.getItem("oe"))[1]
 
 
 def getBoxType():  # this function mimics the function of the same name in branding module
