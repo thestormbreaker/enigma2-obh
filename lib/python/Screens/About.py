@@ -11,7 +11,7 @@ from Components.Network import iNetwork
 from Components.NimManager import nimmanager
 from Components.Pixmap import MultiPixmap
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import SystemInfo, CHIPSET, SOC_BRAND
 from Screens.GitCommitInfo import CommitInfo
 from Screens.Screen import Screen, ScreenSummary
 from Screens.SoftwareUpdate import UpdatePlugin
@@ -56,22 +56,16 @@ class About(AboutBase):
 		})
 
 	def populate(self):
+		Brands = {"bcm": "Broadcom", "hisi": "Hisilicon"}
 		AboutText = ""
-		AboutText += _("Model:\t%s %s\n") % (SystemInfo["MachineBrand"].capitalize(), SystemInfo["MachineName"])
-
-		if about.getChipSetString() != _("unavailable"):
-			if SystemInfo["HasHiSi"]:
-				AboutText += _("Chipset:\tHiSilicon %s\n") % about.getChipSetString().upper()
-			elif about.getIsBroadcom():
-				AboutText += _("Chipset:\tBroadcom %s\n") % about.getChipSetString().upper()
-			else:
-				AboutText += _("Chipset:\t%s\n") % about.getChipSetString().upper()
+		AboutText += _("Model:\t%s %s\n") % (SystemInfo["MachineBrand"], SystemInfo["MachineName"])
+		AboutText += _("Chipset:\t%s %s\n") % (Brands.get(SOC_BRAND, SOC_BRAND), CHIPSET)
 
 		AboutText += _("CPU:\t%s %s %s\n") % (about.getCPUArch(), about.getCPUSpeedString(), about.getCpuCoresString())
 
 		AboutText += _("SoC:\t%s\n") % SystemInfo["socfamily"].upper()
 
-		if SystemInfo["boxtype"] in ("gbquad4k", "gbue4k", "gbx34k", "gbquad4kpro"):
+		if SystemInfo["boxtype"] in ("gbquad4k", "gbue4k", "gbquad4kpro"):
 			with open("/sys/firmware/devicetree/base/bolt/tag") as f:
 				AboutText += _("Bolt:%s\n") % f.read().strip()[0:4]
 
@@ -143,13 +137,13 @@ class About(AboutBase):
 		skinHeight = getDesktop(0).size().height()
 
 		AboutText += _("Drivers:\t%s\n") % about.driversDate()
-		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
+		AboutText += _("Kernel:\t%s\n") % SystemInfo["kernel"]
 		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString().replace("GStreamer ", "")
 		if isPluginInstalled("ServiceApp") and config.plugins.serviceapp.servicemp3.replace.value:
 			AboutText += _("4097 iptv player:\t%s\n") % config.plugins.serviceapp.servicemp3.player.value
 		else:
 			AboutText += _("4097 iptv player:\tDefault player\n")
-		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
+		AboutText += _("Python:\t%s\n") % SystemInfo["python"]
 		AboutText += _("Last E2 update:\t%s (%s)\n") % (about.getLastCommitHash(), about.getLastCommitDate())
 		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
 		uptime = about.getBoxUptime()
