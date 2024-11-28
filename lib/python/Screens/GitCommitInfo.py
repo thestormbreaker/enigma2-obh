@@ -3,7 +3,7 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import SystemInfo, CommitLogs
 from Screens.Screen import Screen, ScreenSummary
 
 from enigma import eTimer
@@ -11,8 +11,8 @@ from sys import modules
 from datetime import datetime
 from json import loads
 # required methods: Request, urlopen, HTTPError, URLError
-from urllib.request import urlopen, Request  # raises ImportError in Python 2
-from urllib.error import HTTPError, URLError  # raises ImportError in Python 2
+from urllib.request import urlopen, Request
+from urllib.error import HTTPError, URLError
 
 if SystemInfo["imagetype"] == 'release':
 	ImageVer = "%03d" % int(SystemInfo["imagebuild"])
@@ -20,27 +20,15 @@ else:
 	ImageVer = "%s.%s" % (SystemInfo["imagebuild"], SystemInfo["imagedevbuild"])
 	ImageVer = float(ImageVer)
 
-E2Branches = {
-	'developer': 'Developer',
-	'release': 'Release'
-}
 
 project = 0
-projects = [
-	("https://api.github.com/repos/oe-alliance/oe-alliance-core/commits?sha=5.4", "OE-A Core"),
-	("https://api.github.com/repos/OpenViX/enigma2/commits?sha=%s" % getattr(E2Branches, SystemInfo["imagetype"], "Release"), "Enigma2"),
-	("https://api.github.com/repos/OpenViX/skins/commits", "ViX Skins"),
-	("https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits", "OE-A Plugins"),
-	("https://api.github.com/repos/oe-alliance/AutoBouquetsMaker/commits", "AutoBouquetsMaker"),
-	("https://api.github.com/repos/oe-alliance/branding-module/commits", "Branding Module"),
-]
 cachedProjects = {}
 
 
 def readGithubCommitLogsSoftwareUpdate():
 	global ImageVer
 	gitstart = True
-	url = projects[project][0]
+	url = CommitLogs[project][0]
 	commitlog = ""
 	try:
 		try:
@@ -98,7 +86,7 @@ def readGithubCommitLogs():
 	cachedProjects = {}
 	blockstart = False
 	gitstart = True
-	url = projects[project][0]
+	url = CommitLogs[project][0]
 	commitlog = ""
 	try:
 		try:
@@ -156,17 +144,17 @@ def readGithubCommitLogs():
 
 
 def getScreenTitle():
-	return projects[project][1]
+	return CommitLogs[project][1]
 
 
 def left():
 	global project
-	project = project == 0 and len(projects) - 1 or project - 1
+	project = project == 0 and len(CommitLogs) - 1 or project - 1
 
 
 def right():
 	global project
-	project = project != len(projects) - 1 and project + 1 or 0
+	project = project != len(CommitLogs) - 1 and project + 1 or 0
 
 
 gitcommitinfo = modules[__name__]
