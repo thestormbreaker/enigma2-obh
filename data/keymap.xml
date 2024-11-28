@@ -530,6 +530,7 @@
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
 		<key id="KEY_SAT" mapto="openSatellites" flags="m" />
 		<key id="KEY_FAVORITES" mapto="openBouquets" flags="m" />
+		<key id="KEY_ARCHIVE" mapto="historyBack" flags="mr" />
 	</map>
 
 	<map context="InfobarZoomActions">
@@ -592,6 +593,7 @@
 		<key id="KEY_OPTION" mapto="showNetworkSetup" flags="mr" />
 		<key id="KEY_F5" mapto="showRFmod" flags="b" />
 		<key id="KEY_F5" mapto="toggleAspectRatio" flags="l" />
+		<key id="KEY_SCREEN" mapto="aspectSelection" flags="b" />
 		<key id="KEY_VMODE" mapto="toggleAspectRatio" flags="b" />
 	</map>
 
@@ -638,6 +640,7 @@
 		<key id="KEY_GREEN" mapto="aspectSelection" flags="l" />
 		<key id="KEY_MODE" mapto="aspectSelection" flags="l" />
 		<key id="KEY_MODE" mapto="aspectSelection" flags="b" />
+		<key id="KEY_SCREEN" mapto="aspectSelection" flags="b" />
 	</map>
 
 	<map context="InfoBarVideoSetupActions">
@@ -670,6 +673,7 @@
 	</map>
 
 	<map context="InfobarPiPActions">
+		<key id="KEY_F2" mapto="activatePiP" flags="m" />
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="b" />
 	</map>
 
@@ -1036,7 +1040,7 @@
 
 	<map context="FunctionKeyActions">
 		<key id="KEY_F1" mapto="f1" flags="m" />
-		<key id="KEY_F2" mapto="f2" flags="m" />
+		<key id="KEY_F2" mapto="activatePiP" flags="m" />
 		<key id="KEY_F3" mapto="f3" flags="m" />
 	</map>
 
@@ -1265,8 +1269,8 @@
 		<key id="KEY_FASTFORWARD" mapto="fastforward" flags="b" />
 		<key id="KEY_PREVIOUSSONG" mapto="rewind" flags="b" />
 		<key id="KEY_NEXTSONG" mapto="fastforward" flags="b" />
-		<key id="KEY_SCREEN" mapto="activatePiP" flags="b" />
-		<key id="KEY_SCREEN" mapto="activatePiP_long" flags="l" />
+		<key id="KEY_SCREEN" mapto="aspectSelection" flags="b" />
+		<key id="KEY_SCREEN" mapto="toggleAspectRatio_long" flags="l" />
 		<key id="KEY_PROGRAM" mapto="timer" flags="b" />
 		<key id="KEY_EDIT" mapto="timer" flags="b" />
 		<key id="KEY_EDIT" mapto="timer_long" flags="l" />
