@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-27 23:35+0000\n"
-"PO-Revision-Date: 2024-11-23 13:36+0200\n"
+"PO-Revision-Date: 2024-11-28 20:36+0200\n"
 "Last-Translator: Orlandox\n"
 "Language-Team: timoj/Kojo/Samzam/Orlandox\n"
 "Language: fi\n"
@@ -3301,16 +3301,8 @@ msgid "China"
 msgstr "Kiina"
 
 #, python-format
-msgid "Chipset:\t%s\n"
-msgstr "Piirisarja:\t%s\n"
-
-#, python-format
-msgid "Chipset:\tBroadcom %s\n"
-msgstr "Piirisarja:\tBroadcom %s\n"
-
-#, python-format
-msgid "Chipset:\tHiSilicon %s\n"
-msgstr "Piirisarja:\tHiSilicon %s\n"
+msgid "Chipset:\t%s %s\n"
+msgstr "Piirisarja:\t%s %s\n"
 
 #, python-format
 msgid "Chipset: %s"
@@ -13545,7 +13537,7 @@ msgstr ""
 "Suomenkielinen käännös: timoj, Kojo, Samzam, Orlandox\n"
 "\n"
 "Ylläpito : Orlandox\n"
-"--- 23.11.2024 ---\n"
+"--- 28.11.2024 ---\n"
 "\n"
 "http://www.huoltovalikko.com"
 
