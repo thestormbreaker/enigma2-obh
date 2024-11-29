@@ -86,19 +86,6 @@ DISPLAYMODEL = BoxInfo.getItem("displaymodel")
 DISPLAYBRAND = BoxInfo.getItem("displaybrand")
 MACHINEBUILD = BoxInfo.getItem("machinebuild")
 OEA = split('(\d.*)', BoxInfo.getItem("oe"))[1]
-E2Branches = {
-	'developer': 'Python3.12',
-	'release': 'Python3.12',
-	'community': 'Python3.12'
-}
-CommitLogs = [
-	(f"https://api.github.com/repos/oe-alliance/oe-alliance-core/commits?sha={OEA}", "OE-A Core"),
-	("https://api.github.com/repos/BlackHole/enigma2/commits?sha=%s" % getattr(E2Branches, SystemInfo["imagetype"], "Python3.12"), "Enigma2"),
-	("https://api.github.com/repos/BlackHole/skins/commits", "OpenBh Skins"),
-	("https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits", "OE-A Plugins"),
-	("https://api.github.com/repos/oe-alliance/AutoBouquetsMaker/commits", "AutoBouquetsMaker"),
-	("https://api.github.com/repos/oe-alliance/branding-module/commits", "Branding Module"),
-]
 
 
 def getBoxType():  # this function mimics the function of the same name in branding module
