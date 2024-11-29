@@ -1784,6 +1784,8 @@ class InfoBarEPG:
 		return services
 
 	def multiServiceEPG(self, type, showBouquet):
+		if not self.servicelist:
+			return
 		def openEPG(open, bouquet, bouquets):
 			if open:
 				bouquet = bouquet or self.servicelist.getRoot()
