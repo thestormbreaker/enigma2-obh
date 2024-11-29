@@ -86,18 +86,6 @@ DISPLAYMODEL = BoxInfo.getItem("displaymodel")
 DISPLAYBRAND = BoxInfo.getItem("displaybrand")
 MACHINEBUILD = BoxInfo.getItem("machinebuild")
 OEA = split('(\d.*)', BoxInfo.getItem("oe"))[1]
-E2Branches = {
-	'developer': 'Developer',
-	'release': 'Release'
-}
-CommitLogs = [
-	(f"https://api.github.com/repos/oe-alliance/oe-alliance-core/commits?sha={OEA}", "OE-A Core"),
-	("https://api.github.com/repos/OpenViX/enigma2/commits?sha=%s" % getattr(E2Branches, SystemInfo["imagetype"], "Py3D"), "Enigma2"),
-	("https://api.github.com/repos/OpenViX/skins/commits", "ViX Skins"),
-	("https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits", "OE-A Plugins"),
-	("https://api.github.com/repos/oe-alliance/AutoBouquetsMaker/commits", "AutoBouquetsMaker"),
-	("https://api.github.com/repos/oe-alliance/branding-module/commits", "Branding Module"),
-]
 
 
 def getBoxType():  # this function mimics the function of the same name in branding module
