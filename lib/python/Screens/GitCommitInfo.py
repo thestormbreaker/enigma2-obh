@@ -3,7 +3,7 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo, CommitLogs, OEA
+from Components.SystemInfo import SystemInfo, OEA
 from Screens.Screen import Screen, ScreenSummary
 
 from enigma import eTimer
