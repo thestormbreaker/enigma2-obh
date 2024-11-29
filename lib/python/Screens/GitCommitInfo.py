@@ -3,7 +3,7 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo, CommitLogs, OEA
+from Components.SystemInfo import SystemInfo, OEA
 from Screens.Screen import Screen, ScreenSummary
 
 from enigma import eTimer
@@ -24,7 +24,7 @@ E2Branches = {
     'developer': 'Python3.12',
     'release': 'Python3.12',
     'community': 'Python3.12'
-    }
+}
 CommitLogs = [
 	(f"https://api.github.com/repos/oe-alliance/oe-alliance-core/commits?sha={OEA}", "OE-A Core"),
 	("https://api.github.com/repos/BlackHole/enigma2/commits?sha=%s" % getattr(E2Branches, SystemInfo["imagetype"], "Python3.12"), "Enigma2"),
