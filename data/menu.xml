@@ -243,6 +243,7 @@ self.session.scart.VCRSbChanged(3)
 		<item key="standby" level="0" text="Standby"><screen module="Standby" /></item>
 		<item key="deep_standby" level="0" text="Deep Standby" requires="DeepstandbySupport"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 		<item key="deep_standby" level="0" text="Shut Down" requires="!DeepstandbySupport"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+		<item key="maintenance_mode" level="0" text="Recovery Mode" description="Shut down Dreambox OS and start Recovery Mode to flash firmware images."><screen module="Standby" screen="TryQuitMainloop">16</screen></item>
 		<item key="multiboot" level="0" text="MultiBoot Image Selector" requires="canMultiBoot"><screen module="MultiBootSelector">1</screen></item>
 		<item key="android_mode" level="0" text="Android Mode" requires="AndroidMode"><screen module="Standby" screen="TryQuitMainloop">12</screen></item>
 		<item key="H9SDswap" level="0" text="H9SDroot" requires="HasH9SD"><screen module="H9SDswap">1</screen></item>
