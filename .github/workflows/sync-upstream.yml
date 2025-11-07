@@ -1,0 +1,51 @@
+name: Sync upstream (BlackHole Python3.13)
+
+on:
+  schedule:
+    - cron: "30 3 * * *"   # daily at 03:30 UTC
+  workflow_dispatch: {}     # manual run button
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-upstream-bh-py313
+  cancel-in-progress: true
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # full history of YOUR fork
+
+      - name: Set git identity
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream and fetch FULL history of Python3.13
+        run: |
+          set -e
+          git remote add upstream https://github.com/BlackHole/enigma2.git || true
+          # fetch only the branch we need, but fully (no --depth)
+          git fetch upstream +refs/heads/Python3.13:refs/remotes/upstream/Python3.13 --prune --no-tags
+          echo "Shallow repo? $(git rev-parse --is-shallow-repository)"
+
+      - name: Create/Update mirror branch (upstream-bh-py313)
+        run: |
+          set -e
+          TARGET_BRANCH=upstream-bh-py313
+          git checkout -B "$TARGET_BRANCH" "upstream/Python3.13"
+
+          UPSTREAM_SHA=$(git rev-parse "upstream/Python3.13")
+          CURRENT_REMOTE_SHA=$(git ls-remote --heads origin "$TARGET_BRANCH" | awk '{print $1}' || true)
+
+          if [ "$UPSTREAM_SHA" = "$CURRENT_REMOTE_SHA" ]; then
+            echo "No changes to push."
+          else
+            # push a complete pack to avoid 'index-pack failed' on the remote
+            git push --no-thin --force-with-lease origin "$TARGET_BRANCH"
+          fi
